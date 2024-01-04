@@ -43,7 +43,7 @@ export const deleteUser = async (req, res, next) => {
     return next(errorHandler(401, "You can delete only your own profile"));
   try {
     await User.findByIdAndDelete(req.params.id);
-    res.clearCokie("access_token");
+    res.clearCookie("access_token");
     res.status(200).json("User has been deleted successfully!");
   } catch (error) {
     next(error);
@@ -53,12 +53,12 @@ export const deleteUser = async (req, res, next) => {
 export const getUserListings = async (req, res, next) => {
   if (req.user.id === req.params.id) {
     try {
-      const listings = await Listing.findById({ userRef: req.params.id });
+      const listings = await Listing.find({ userRef: req.params.id });
       res.status(200).json(listings);
     } catch (error) {
       next(error);
     }
   } else {
-    return next(errorHandler(401, "Ypu can only view your own listings"));
+    return next(errorHandler(401, "You can only view your own listings"));
   }
 };

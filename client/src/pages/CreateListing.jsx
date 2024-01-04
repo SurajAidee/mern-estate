@@ -65,8 +65,8 @@ export default function CreateListing() {
     return new Promise((resolve, reject) => {
       const storage = getStorage(app);
       const fileName = new Date().getTime() + file.name;
-      const storageref = ref(storage, fileName);
-      const uploadTask = uploadBytesResumable(storageref, file);
+      const storageRef = ref(storage, fileName);
+      const uploadTask = uploadBytesResumable(storageRef, file);
       uploadTask.on(
         "state_changed",
         (snapshot) => {
