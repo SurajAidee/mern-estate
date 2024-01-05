@@ -28,7 +28,6 @@ app.listen(4000, () => {
 });
 
 app.use("/api/user", userRouter);
-
 app.use("/api/auth", authRouter);
 app.use("/api/listing", listingRouter);
 
